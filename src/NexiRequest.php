@@ -9,11 +9,11 @@ use Composer\CaBundle\CaBundle;
 class NexiRequest
 {
 	protected $env;
-	protected $url;
-	protected $alias;
-	protected $keysecret;
-	protected $sandbox = 'https://int-ecommerce.nexi.it';
-    protected $production = 'https://ecommerce.nexi.it';
+	public $url;
+	public $alias;
+	public $keysecret;
+	public $sandbox = 'https://int-ecommerce.nexi.it';
+    public $production = 'https://ecommerce.nexi.it';
 	
 	public function __construct(array $args)
     {
