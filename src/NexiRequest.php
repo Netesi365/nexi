@@ -10,8 +10,8 @@ class NexiRequest
 {
 	protected $env;
 	public $url;
-	public $alias;
-	public $keysecret;
+	public $apiKey;
+	public $secret;
 	public $sandbox = 'https://int-ecommerce.nexi.it';
     public $production = 'https://ecommerce.nexi.it';
 	
@@ -19,7 +19,7 @@ class NexiRequest
     {
 		$this->env = (($args['env'] == 'sandbox') ? 'sandbox' : 'production');
         $this->url = (($args['env'] == 'sandbox') ? $this->sandbox : $this->production);
-		$this->alias = (!empty($args['alias']) ? $args['alias'] : '');
-		$this->keysecret = (!empty($args['keysecret']) ? $args['keysecret'] : '');
+		$this->apiKey = (!empty($args['alias']) ? $args['alias'] : '');
+		$this->secret = (!empty($args['keysecret']) ? $args['keysecret'] : '');
     }
 }

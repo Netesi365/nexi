@@ -8,18 +8,8 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class AmazonPay
+class AmazonPay extends Nexirequest
 {
-	protected $url;
-	protected $apiKey;
-	protected $secret;
-	
-	public function __construct(Nexirequest $client)
-    {
-		$this->url = $client->url;
-		$this->apiKey = $client->alias;
-		$this->secret = $client->keysecret;
-    }
 	public function action(string $codTrans, string $importo, string $divisa, $params = array(), $otherparams = array()){
 		try {
 			$timeStamp = (time()) * 1000;
