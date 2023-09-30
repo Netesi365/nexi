@@ -20,7 +20,7 @@ class AmazonPay
 		$this->apiKey = $client->alias;
 		$this->secret = $client->keysecret;
     }
-	public function action(string $codTrans, string $importo, string $divisa, string $params = ''){
+	public function action(string $codTrans, string $importo, string $divisa, $params = array(), $otherparams = array()){
 		try {
 			$timeStamp = (time()) * 1000;
 			$mac = sha1('apiKey=' . $this->apiKey . 'codiceTransazione=' . $codTrans . 'importo=' . $importo . "divisa=" . $divisa . "timeStamp=" . $timeStamp . $this->secret);
@@ -30,19 +30,8 @@ class AmazonPay
 					'codiceTransazione' => $codTrans,
 					'importo' => $importo,
 					'divisa' => $divisa,
-					'amazonpay' => array(
-						'amazonReferenceId' => '141313',
-						'accessToken' => '',
-						'softDecline' => '',
-						'creaContratto' => ''
-					),
-					'parametriAggiuntivi' => array(
-						'nome' => 'Mario',
-						'cognome' => 'Rossi',
-						'mail' => "cardHolder@mail.it",
-						'descrizione' => "descrizione",
-						'Note1' => "note",
-					),
+					'amazonpay' => $params,
+					'parametriAggiuntivi' => $otherparams,
 					'timeStamp' => (string) $timeStamp,
 					'mac' => $mac
 			];
