@@ -20,7 +20,7 @@ class AmazonPay
 		$this->apiKey = $client->alias;
 		$this->secret = $client->keysecret;
     }
-	public function action(string $codTrans, string $importo, string $divisa, string $params){
+	public function action(string $codTrans, string $importo, string $divisa, string $params = ''){
 		try {
 			$timeStamp = (time()) * 1000;
 			$mac = sha1('apiKey=' . $this->apiKey . 'codiceTransazione=' . $codTrans . 'importo=' . $importo . "divisa=" . $divisa . "timeStamp=" . $timeStamp . $this->secret);
