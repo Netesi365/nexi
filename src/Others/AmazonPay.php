@@ -25,13 +25,7 @@ class AmazonPay
 			$timeStamp = (time()) * 1000;
 			$mac = sha1('apiKey=' . $this->apiKey . 'codiceTransazione=' . $codTrans . 'importo=' . $importo . "divisa=" . $divisa . "timeStamp=" . $timeStamp . $this->secret);
 			$client = new Client(['base_uri' => $this->url, RequestOptions::VERIFY => CaBundle::getSystemCaRootBundlePath()]);
-			$guzrequest = $client->request('POST', '/ecomm/api/paga/amazonpay', [
-				'connect_timeout' => 1.5,
-				'headers' => [
-					'Accept' => 'application/json',
-					'Content-Type' => 'application/json',
-				],
-				'form_params' => [
+			$params = [
 					'apiKey' => $this->apiKey,
 					'codiceTransazione' => $codTrans,
 					'importo' => $importo,
@@ -51,7 +45,14 @@ class AmazonPay
 					),
 					'timeStamp' => (string) $timeStamp,
 					'mac' => $mac
-					],
+			];
+			$guzrequest = $client->request('POST', '/ecomm/api/paga/amazonpay', [
+				'connect_timeout' => 1.5,
+				'headers' => [
+					'Accept' => 'application/json',
+					'Content-Type' => 'application/json',
+				],
+				'body'=>json_encode($params,JSON_UNESCAPED_UNICODE)
 			]);
 			$guzresponse = $guzrequest->getBody()->getContents();
 			$myresponse = $guzresponse;
