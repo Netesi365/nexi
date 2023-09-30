@@ -31,7 +31,7 @@ class AmazonPay
 					'importo' => $importo,
 					'divisa' => $divisa,
 					'amazonpay' => array(
-						'amazonReferenceId' => '',
+						'amazonReferenceId' => '141313',
 						'accessToken' => '',
 						'softDecline' => '',
 						'creaContratto' => ''
