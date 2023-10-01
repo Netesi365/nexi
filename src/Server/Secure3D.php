@@ -62,6 +62,6 @@ class Secure3D extends Nexirequest
 			$myresponse = $e->getResponse()->getBody()->getContents();
 		}
 		$response = json_encode($result);
-		return $response
+		return $response;
 	}
 }
