@@ -36,11 +36,32 @@ class Secure3D extends Nexirequest
 				'body'=>json_encode($params,JSON_UNESCAPED_UNICODE)
 			]);
 			$guzresponse = $guzrequest->getBody()->getContents();
-			$myresponse = $guzresponse;
+			$myresponse = json_decode($guzresponse, true);
+			if ($myresponse['esito'] == 'OK') {
+				$result = [
+					'success' => 1,
+					'error' => 0,
+					'code' => '0',
+					'idOperazione' => $myresponse['idOperazione'],
+					'timeStamp' => $myresponse['timeStamp'],
+					'msg' => 'OK'
+				];
+			}
+		}
+		catch (Exception $e) {
+			$result = [
+					'success' => 0,
+					'error' => 1,
+					'code' => $e->getCode(),
+					'idOperazione' => '',
+					'timeStamp' => '',
+					'msg' => $e->getMessage()
+			];
 		}
 		catch (BadResponseException $e) {
 			$myresponse = $e->getResponse()->getBody()->getContents();
 		}
-		return $myresponse;
+		$response = json_encode($result);
+		return $response
 	}
 }
