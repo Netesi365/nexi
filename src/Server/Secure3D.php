@@ -8,7 +8,7 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class 3DSecure extends Nexirequest
+class Secure3D extends Nexirequest
 {
 	public function action(string $codTrans = '', string $importo = '', string $divisa = '', string $pan = '', string $scadenza = '', string $cvv = '', string $returnUrl = '') : string {
 		try {
