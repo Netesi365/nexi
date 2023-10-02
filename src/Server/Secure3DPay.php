@@ -76,9 +76,9 @@ class Secure3DPay extends Nexirequest
 			$guzresponse = $guzrequest->getBody()->getContents();
 			$myresponse = json_decode($guzresponse, true);
 			if ($myresponse['esito'] == 'OK') {
-				$macCalculated2 = sha1('esito=' . $myresponse['esito'] . 'idOperazione=' . $myresponse['idOperazione'] . 'timeStamp=' . $myresponse['timeStamp'] . $this->secret);
-				if ($macCalculated2 != $myresponse['mac']) {
-					throw new \Exception('Errore MAC:' . $macCalculated2 .' differs from'. $myresponse['mac'],004);
+				$macCalculated = sha1('esito=' . $myresponse['esito'] . 'idOperazione=' . $myresponse['idOperazione'] . 'timeStamp=' . $myresponse['timeStamp'] . $this->secret);
+				if ($macCalculated != $myresponse['mac']) {
+					throw new \Exception('Errore MAC:' . $macCalculated .' differs from'. $myresponse['mac'],004);
 				}
 				$result = [
 					'success' => 1,
