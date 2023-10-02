@@ -68,7 +68,7 @@ class Secure3DPay extends Nexirequest
 					'code' => 0,
 					'idOperazione' => '',
 					'timeStamp' => $timeStamp,
-					'msg' => $e->getResponse()->getBody()->getContents();
+					'msg' => $e->getResponse()->getBody()->getContents()
 			];
 		}
 		$response = json_encode($result);
