@@ -47,19 +47,29 @@ class Secure3D extends Nexirequest
 					'msg' => 'OK'
 				];
 			}
+			else {
+				throw new \Exception($myresponse['errore']['messaggio'], $myresponse['errore']['codice']);
+			}
 		}
-		catch (Exception $e) {
+		catch (\Exception $e) {
 			$result = [
 					'success' => 0,
 					'error' => 1,
 					'code' => $e->getCode(),
-					'idOperazione' => '',
-					'timeStamp' => '',
+					'idOperazione' => $myresponse['idOperazione'],
+					'timeStamp' => $myresponse['timeStamp'],
 					'msg' => $e->getMessage()
 			];
 		}
 		catch (BadResponseException $e) {
-			$myresponse = $e->getResponse()->getBody()->getContents();
+			$result = [
+					'success' => 0,
+					'error' => 1,
+					'code' => 0,
+					'idOperazione' => '',
+					'timeStamp' => $timeStamp,
+					'msg' => $e->getResponse()->getBody()->getContents();
+			];
 		}
 		$response = json_encode($result);
 		return $response;
