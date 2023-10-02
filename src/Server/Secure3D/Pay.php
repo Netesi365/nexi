@@ -1,6 +1,6 @@
 <?php
 
-namespace Netesi365\Nexi\Server;
+namespace Netesi365\Nexi\Server\Secure3D;
 
 use Netesi365\Nexi\Nexirequest;
 use GuzzleHttp\Client;
@@ -8,7 +8,7 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class Secure3DPay extends Nexirequest
+class Pay extends Nexirequest
 {
 	public function check(string $params = '') : string {
 		try {

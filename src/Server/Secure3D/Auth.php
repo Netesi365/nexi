@@ -1,6 +1,6 @@
 <?php
 
-namespace Netesi365\Nexi\Server;
+namespace Netesi365\Nexi\Server\Secure3D;
 
 use Netesi365\Nexi\Nexirequest;
 use GuzzleHttp\Client;
@@ -8,7 +8,7 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class Secure3DAuth extends Nexirequest
+class Auth extends Nexirequest
 {
 	public function action(string $codTrans = '', string $importo = '', string $divisa = '', string $pan = '', string $scadenza = '', string $cvv = '', string $returnUrl = '') : string {
 		try {
