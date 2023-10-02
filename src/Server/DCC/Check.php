@@ -33,8 +33,8 @@ class Check extends Nexirequest
 			$guzresponse = $guzrequest->getBody()->getContents();
 			$myresponse = json_decode($guzresponse, true);
 			if (json_last_error() === JSON_ERROR_NONE) {
-				$MACrisposta = sha1('esito=' . $myresponse['esito'] . 'idOperazione=' . $myresponse['idOperazione'] . 'timeStamp=' . $myresponse['timeStamp'] . $this->secret);
-				if ($myresponse['mac'] == $MACrisposta) {
+				$MACresponse = sha1('esito=' . $myresponse['esito'] . 'idOperazione=' . $myresponse['idOperazione'] . 'timeStamp=' . $myresponse['timeStamp'] . $this->secret);
+				if ($myresponse['mac'] == $MACresponse) {
 					if ($myresponse['esito'] == 'OK') {
 						$result = [
 							'success' => 1,
