@@ -12,6 +12,9 @@ class Check extends Nexirequest
 {
 	public function action(string $importo = '', string $pan = '') : string {
 		try {
+			if (empty($importo) || empty($pan)) {
+				throw new \Exception('Missing a parameter',002);
+			}
 			$timeStamp = (time()) * 1000;
 			$mac = sha1('apiKey=' . $this->apiKey . 'pan=' . $pan . 'importo=' . $importo . "timeStamp=" . $timeStamp . $this->secret);
 			$client = new Client(['base_uri' => $this->url, RequestOptions::VERIFY => CaBundle::getSystemCaRootBundlePath()]);

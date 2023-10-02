@@ -84,9 +84,9 @@ class Pay extends Nexirequest
 					'success' => 1,
 					'error' => 0,
 					'code' => '0',
-					'idOperazione' => $myresponse['idOperazione'],
-					'codiceAutorizzazione' => $myresponse['codiceAutorizzazione'],
-					'timeStamp' => $myresponse['timeStamp'],
+					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+					'codiceAutorizzazione' => (!empty($myresponse['codiceAutorizzazione']) ? $myresponse['codiceAutorizzazione'] : ''),
+					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => 'OK'
 				];
 			}
@@ -99,8 +99,8 @@ class Pay extends Nexirequest
 					'success' => 0,
 					'error' => 1,
 					'code' => $e->getCode(),
-					'idOperazione' => $myresponse['idOperazione'],
-					'timeStamp' => $myresponse['timeStamp'],
+					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => $e->getMessage()
 			];
 		}
@@ -110,7 +110,7 @@ class Pay extends Nexirequest
 					'error' => 1,
 					'code' => 0,
 					'idOperazione' => '',
-					'timeStamp' => $timeStamp,
+					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
 					'msg' => $e->getResponse()->getBody()->getContents()
 			];
 		}

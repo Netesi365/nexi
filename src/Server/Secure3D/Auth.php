@@ -12,6 +12,9 @@ class Auth extends Nexirequest
 {
 	public function action(string $codTrans = '', string $importo = '', string $divisa = '', string $pan = '', string $scadenza = '', string $cvv = '', string $returnUrl = '') : string {
 		try {
+			if (empty($codTrans) || empty($importo) || empty($divisa) || empty($pan) || empty($scadenza) || empty($cvv) || empty($returnUrl)) {
+				throw new \Exception('Missing a parameter',002);
+			}
 			$timeStamp = (time()) * 1000;
 			$mac = sha1('apiKey=' . $this->apiKey . 'codiceTransazione=' . $codTrans . "divisa=" . $divisa . 'importo=' . $importo . "timeStamp=" . $timeStamp . $this->secret);
 			$client = new Client(['base_uri' => $this->url, RequestOptions::VERIFY => CaBundle::getSystemCaRootBundlePath()]);
@@ -56,8 +59,8 @@ class Auth extends Nexirequest
 					'success' => 0,
 					'error' => 1,
 					'code' => $e->getCode(),
-					'idOperazione' => $myresponse['idOperazione'],
-					'timeStamp' => $myresponse['timeStamp'],
+					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => $e->getMessage()
 			];
 		}
@@ -67,7 +70,7 @@ class Auth extends Nexirequest
 					'error' => 1,
 					'code' => 0,
 					'idOperazione' => '',
-					'timeStamp' => $timeStamp,
+					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
 					'msg' => $e->getResponse()->getBody()->getContents()
 			];
 		}
