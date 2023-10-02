@@ -40,8 +40,8 @@ class Pay extends Nexirequest
 					'success' => 0,
 					'error' => 1,
 					'code' => $e->getCode(),
-					'idOperazione' => $request['idOperazione'],
-					'timeStamp' => $request['timeStamp'],
+					'idOperazione' => (!empty($request['idOperazione']) ? $request['idOperazione'] : ''),
+					'timeStamp' => (!empty($request['timeStamp']) ? $request['timeStamp'] : ''),
 					'msg' => $e->getMessage()
 			];
 		}

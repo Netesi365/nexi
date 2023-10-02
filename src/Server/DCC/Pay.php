@@ -49,9 +49,9 @@ class Pay extends Nexirequest
 							'success' => 1,
 							'error' => 0,
 							'code' => '0',
-							'idOperazione' => $myresponse['idOperazione'],
-							'timeStamp' => $myresponse['timeStamp'],
-							'mac' => $myresponse['mac'],
+							'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+							'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
+							'mac' => (!empty($myresponse['mac']) ? $myresponse['mac'] : ''),
 							'msg' => $myresponse['esito']
 						];
 					}
