@@ -78,7 +78,7 @@ class Nonce extends Nexirequest
 				}
 			}
 			else {
-					throw new \Exception('Wrong response', 001);
+				throw new \Exception('Wrong response', 001);
 			}
 		}
 		catch (\Exception $e) {

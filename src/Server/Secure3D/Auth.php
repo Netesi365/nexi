@@ -46,7 +46,7 @@ class Auth extends Nexirequest
 					'error' => 0,
 					'code' => '0',
 					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
-								'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
+					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => 'OK'
 				];
 			}
