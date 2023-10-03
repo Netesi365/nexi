@@ -37,6 +37,7 @@ class Pay extends Nexirequest
 					'num_contratto' => $contractNumber,
 					'tipo_servizio' => $serviceType,
 					'tipo_richiesta' => $requestType,
+					'request_url' => $this->url .'/ecomm/ecomm/DispatcherServlet'
 				);
 			}
 			else if ($serviceType == 'paga_1click') {
