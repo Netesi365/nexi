@@ -55,6 +55,7 @@ class Pay extends Nexirequest
 					'mac' => $mac,
 					'num_contratto' => $contractNumber,
 					'tipo_servizio' => $serviceType,
+					'request_url' => $this->url .'/ecomm/ecomm/DispatcherServlet'
 				);
 			}
 			$result = [
