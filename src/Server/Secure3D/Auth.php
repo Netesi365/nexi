@@ -45,9 +45,10 @@ class Auth extends NexiRequest
 					'success' => 1,
 					'error' => 0,
 					'code' => '0',
-					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
-					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
-					'msg' => 'OK'
+					'idOperazione' => (string) (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+					'timeStamp' => (string) (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
+					'msg' => (string) $myresponse['esito'],
+					'data' => (string) (!empty($myresponse['html']) ? $myresponse['html'] : '')
 				];
 			}
 			else {
@@ -61,7 +62,8 @@ class Auth extends NexiRequest
 					'code' => $e->getCode(),
 					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
 					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
-					'msg' => $e->getMessage()
+					'msg' => $e->getMessage(),
+					'data' => NULL
 			];
 		}
 		catch (BadResponseException $e) {
@@ -71,7 +73,8 @@ class Auth extends NexiRequest
 					'code' => 0,
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
-					'msg' => $e->getResponse()->getBody()->getContents()
+					'msg' => $e->getResponse()->getBody()->getContents(),
+					'data' => NULL
 			];
 		}
 		$response = json_encode($result);
