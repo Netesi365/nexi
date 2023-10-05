@@ -2,13 +2,13 @@
 
 namespace Netesi365\Nexi\Server\DCC;
 
-use Netesi365\Nexi\Nexirequest;
+use Netesi365\Nexi\NexiRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class Pay extends Nexirequest
+class Pay extends NexiRequest
 {
 	public function action(string $codTrans = '', string $importo = '', string $divisa = '', string $xpayNonce = '', string $ticket = '', string $importoDCC = '', string $divisaDCC = '', string $taxchange = 'SI') : string {
 		try {

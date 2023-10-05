@@ -2,13 +2,13 @@
 
 namespace Netesi365\Nexi\Server\DCC;
 
-use Netesi365\Nexi\Nexirequest;
+use Netesi365\Nexi\NexiRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class Check extends Nexirequest
+class Check extends NexiRequest
 {
 	public function action(string $importo = '', string $pan = '') : string {
 		try {

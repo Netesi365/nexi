@@ -2,13 +2,13 @@
 
 namespace Netesi365\Nexi\Server\Recurrent\First3DSecure;
 
-use Netesi365\Nexi\Nexirequest;
+use Netesi365\Nexi\NexiRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
 use Composer\CaBundle\CaBundle;
 
-class Pay extends Nexirequest
+class Pay extends NexiRequest
 {
 	public function check(string $params = '') : string {
 		try {
