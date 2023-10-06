@@ -16,11 +16,11 @@ class Pay extends NexiRequest
 				throw new \Exception('Params is not a JSON',001);
 			}
 			$request = json_decode($params, true);		
-			if (empty($request['esito']) || empty($request['messaggio']) || empty($request['idOperazione']) || empty($request['xpayNonce']) || empty($request['timeStamp']) || empty($request['mac'])) {
+			if (empty($request['esito']) || empty($request['idOperazione']) || empty($request['xpayNonce']) || empty($request['timeStamp']) || empty($request['mac'])) {
 				throw new \Exception('Missing a parameter',002);
 			}
 			if($request['esito'] != "OK"){
-				throw new \Exception('3D-Secure:' . $request['esito'] .'-'. $request['messaggio'],003);			
+				throw new \Exception('3D-Secure:' . $request['esito'] .'-'. (!empty($request['messaggio']) ? $request['messaggio'] : ''),003);			
 			}
 			$macCalculated = sha1('esito=' . $request['esito'] .'idOperazione=' . $request['idOperazione'] .'xpayNonce=' . $request['xpayNonce'] .'timeStamp=' . $request['timeStamp'] . $this->secret);
 			if ($macCalculated != $request['mac']) {
