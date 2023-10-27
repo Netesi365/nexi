@@ -101,7 +101,7 @@ class Pay extends NexiRequest
 					'code' => 0,
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
-					'msg' => json_encode($e->handlerContext),
+					'msg' => json_encode($e->getRequest()),
 					'data' => NULL
 			];
 		}
