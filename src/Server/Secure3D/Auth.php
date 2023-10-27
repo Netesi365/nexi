@@ -60,10 +60,10 @@ class Auth extends NexiRequest
 			$result = [
 					'success' => 0,
 					'error' => 1,
-					'code' => 0,
+					'code' => 408,
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
-					'msg' => json_encode($e->getRequest()),
+					'msg' => "Connection Timeout",
 					'data' => NULL
 			];
 		}
