@@ -6,6 +6,7 @@ use Netesi365\Nexi\NexiRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ConnectException;
 use Composer\CaBundle\CaBundle;
 
 class Pay extends NexiRequest
