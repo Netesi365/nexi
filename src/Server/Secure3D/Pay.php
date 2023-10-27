@@ -94,14 +94,15 @@ class Pay extends NexiRequest
 				throw new \Exception($myresponse['errore']['messaggio'], $myresponse['errore']['codice']);
 			}
 		}
-		catch (\Exception $e) {
+		catch (ConnectException $e) {
 			$result = [
 					'success' => 0,
 					'error' => 1,
-					'code' => $e->getCode(),
-					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
-					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
-					'msg' => $e->getMessage()
+					'code' => 0,
+					'idOperazione' => '',
+					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
+					'msg' => json_encode($e->handlerContext),
+					'data' => NULL
 			];
 		}
 		catch (BadResponseException $e) {
@@ -112,6 +113,16 @@ class Pay extends NexiRequest
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
 					'msg' => $e->getResponse()->getBody()->getContents()
+			];
+		}
+		catch (\Exception $e) {
+			$result = [
+					'success' => 0,
+					'error' => 1,
+					'code' => $e->getCode(),
+					'idOperazione' => (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
+					'timeStamp' => (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
+					'msg' => $e->getMessage()
 			];
 		}
 		$response = json_encode($result);
