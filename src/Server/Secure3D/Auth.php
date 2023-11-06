@@ -49,7 +49,8 @@ class Auth extends NexiRequest
 					'idOperazione' => (string) (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
 					'timeStamp' => (string) (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => (string) $myresponse['esito'],
-					'data' => (string) (!empty($myresponse['html']) ? $myresponse['html'] : '')
+					'data' => (string) (!empty($myresponse['html']) ? $myresponse['html'] : ''),
+					'mac' => $mac
 				];
 			}
 			else {
@@ -64,7 +65,8 @@ class Auth extends NexiRequest
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
 					'msg' => "Connection Timeout",
-					'data' => NULL
+					'data' => NULL,
+					'mac' => NULL
 			];
 		}
 		catch (BadResponseException $e) {
