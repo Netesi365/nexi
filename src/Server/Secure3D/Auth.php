@@ -29,7 +29,7 @@ class Auth extends NexiRequest
 				'codiceTransazione' => $codTrans,
 				'urlRisposta' => $returnUrl,
 				'timeStamp' => (string) $timeStamp,
-				'mac' => $mac,
+				'mac' => $mac
 			);
 			$guzrequest = $client->request('POST', '/ecomm/api/paga/autenticazione3DS', [
 				'connect_timeout' => 1.5,
@@ -49,8 +49,7 @@ class Auth extends NexiRequest
 					'idOperazione' => (string) (!empty($myresponse['idOperazione']) ? $myresponse['idOperazione'] : ''),
 					'timeStamp' => (string) (!empty($myresponse['timeStamp']) ? $myresponse['timeStamp'] : ''),
 					'msg' => (string) $myresponse['esito'],
-					'data' => (string) (!empty($myresponse['html']) ? $myresponse['html'] : ''),
-					'mac' => $mac
+					'data' => (string) (!empty($myresponse['html']) ? $myresponse['html'] : '')
 				];
 			}
 			else {
@@ -65,8 +64,7 @@ class Auth extends NexiRequest
 					'idOperazione' => '',
 					'timeStamp' => (!empty($timeStamp) ? $timeStamp : ''),
 					'msg' => "Connection Timeout",
-					'data' => NULL,
-					'mac' => NULL
+					'data' => NULL
 			];
 		}
 		catch (BadResponseException $e) {
